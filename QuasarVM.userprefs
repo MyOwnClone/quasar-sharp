@@ -1,0 +1,22 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="QuasarVM/Main.cs">
+    <Files>
+      <File FileName="QuasarVM/Main.cs" Line="26" Column="3" />
+      <File FileName="QuasarVM/Memory/MemoryBlock.cs" Line="32" Column="5" />
+      <File FileName="QuasarVM/Memory/QuasarRam.cs" Line="88" Column="40" />
+      <File FileName="QuasarVM/AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="QuasarVM/Memory/SegmentationFaultException.cs" Line="19" Column="30" />
+      <File FileName="QuasarVM/Emulator/Emulator.cs" Line="39" Column="3" />
+      <File FileName="QuasarVM/Emulator/Opcode.cs" Line="39" Column="14" />
+      <File FileName="QuasarVM/Emulator/AddressingMode.cs" Line="7" Column="12" />
+      <File FileName="QuasarVM/Emulator/Instruction.cs" Line="66" Column="45" />
+      <File FileName="QuasarVM/Emulator/Register.cs" Line="21" Column="14" />
+      <File FileName="QuasarVM/Emulator/Operand.cs" Line="5" Column="16" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

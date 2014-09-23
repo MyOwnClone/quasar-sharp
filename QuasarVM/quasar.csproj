@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{99D8CA0A-483D-4226-9A66-10996D872063}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>GruntXProductions.Quasar.VM</RootNamespace>
+    <AssemblyName>QuasarVM</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Memory\MemoryBlock.cs" />
+    <Compile Include="Memory\QuasarRam.cs" />
+    <Compile Include="Memory\SegmentationFaultException.cs" />
+    <Compile Include="Emulator\Emulator.cs" />
+    <Compile Include="Emulator\Opcode.cs" />
+    <Compile Include="Emulator\AddressingMode.cs" />
+    <Compile Include="Emulator\Instruction.cs" />
+    <Compile Include="Emulator\Register.cs" />
+    <Compile Include="Emulator\Operand.cs" />
+    <Compile Include="Emulator\Instructions\InstructionMov.cs" />
+    <Compile Include="Emulator\Instructions\InstructionSwp.cs" />
+    <Compile Include="Emulator\Instructions\InstructionSurf.cs" />
+    <Compile Include="Emulator\Instructions\InstructionSsrf.cs" />
+    <Compile Include="Emulator\Instructions\InstructionSpdr.cs" />
+    <Compile Include="Emulator\Instructions\InstructionSivt.cs" />
+    <Compile Include="Emulator\Instructions\InstructionSctl.cs" />
+    <Compile Include="Emulator\Instructions\InstructionLctl.cs" />
+    <Compile Include="Emulator\Instructions\InstructionLurf.cs" />
+    <Compile Include="Emulator\Instructions\InstructionLsrf.cs" />
+    <Compile Include="Emulator\Instructions\InstructionLivt.cs" />
+    <Compile Include="Emulator\Instructions\InstructionLpdr.cs" />
+    <Compile Include="Emulator\Flags.cs" />
+    <Compile Include="Emulator\Instructions\InterpretCmp.cs" />
+    <Compile Include="Emulator\Instructions\InstructionBranch.cs" />
+    <Compile Include="Emulator\ConditionCode.cs" />
+    <Compile Include="Emulator\Instructions\InstructionTst.cs" />
+    <Compile Include="Emulator\InvalidOpcodeException.cs" />
+    <Compile Include="Emulator\Instructions\InstructionAdd.cs" />
+    <Compile Include="Emulator\Instructions\InstructionIDiv.cs" />
+    <Compile Include="Emulator\Instructions\InstructionDiv.cs" />
+    <Compile Include="Emulator\Instructions\InstructionIMul.cs" />
+    <Compile Include="Emulator\Instructions\InstructionMod.cs" />
+    <Compile Include="Emulator\Instructions\InstructionAnd.cs" />
+    <Compile Include="Emulator\Instructions\InstructionBor.cs" />
+    <Compile Include="Emulator\Instructions\InstructionXor.cs" />
+    <Compile Include="Emulator\Instructions\InstructionShl.cs" />
+    <Compile Include="Emulator\Instructions\InstructionShr.cs" />
+    <Compile Include="Emulator\Instructions\InstructionSal.cs" />
+    <Compile Include="Emulator\Instructions\InstructionSar.cs" />
+    <Compile Include="Emulator\Instructions\InstructionMul.cs" />
+    <Compile Include="Emulator\Instructions\InstructionSub.cs" />
+    <Compile Include="Hardware\Device.cs" />
+    <Compile Include="Hardware\PeripheralController.cs" />
+    <Compile Include="Emulator\Instructions\InterpretOut.cs" />
+    <Compile Include="Emulator\Instructions\InterpretIn.cs" />
+    <Compile Include="Emulator\Instructions\InstructionBsr.cs" />
+    <Compile Include="Emulator\Instructions\InstructionRtn.cs" />
+    <Compile Include="Hardware\Devices\DeviceSerial.cs" />
+    <Compile Include="Memory\MappedRegion.cs" />
+    <Compile Include="Hardware\Devices\DeviceTextScreen.cs" />
+    <Compile Include="Hardware\Devices\IDisplay.cs" />
+    <Compile Include="Hardware\Devices\Resolution.cs" />
+    <Compile Include="GUI\ScreenForm.cs" />
+    <Compile Include="Hardware\InterruptController.cs" />
+    <Compile Include="Memory\Stack.cs" />
+    <Compile Include="Emulator\Instructions\InstructionIrtn.cs" />
+    <Compile Include="Memory\PageFaultException.cs" />
+    <Compile Include="Emulator\GeneralProtectionException.cs" />
+    <Compile Include="Emulator\Instructions\InstructionWait.cs" />
+    <Compile Include="Emulator\Instructions\InstructionSc.cs" />
+    <Compile Include="Memory\Page.cs" />
+    <Compile Include="Debugger\DebugServer.cs" />
+    <Compile Include="Debugger\DebugConnection.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Emulator\" />
+    <Folder Include="Hardware\" />
+    <Folder Include="Memory\" />
+    <Folder Include="Emulator\Instructions\" />
+    <Folder Include="Hardware\Devices\" />
+    <Folder Include="GUI\" />
+    <Folder Include="ROM\" />
+    <Folder Include="Debugger\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ROM\font.bin" />
+  </ItemGroup>
+</Project>
