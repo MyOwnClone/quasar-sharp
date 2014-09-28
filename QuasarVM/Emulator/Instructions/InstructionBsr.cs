@@ -10,7 +10,7 @@ namespace GruntXProductions.Quasar.VM
 			if(ins.Operand1.OperandAddressingMode == AddressingMode.IMMEDIATE_32
 			   && ins.Operand2.OperandAddressingMode == AddressingMode.NONE)
 			{
-				int jump = ((int)(uint)ins.Operand1.Value) - ins.Size;
+				int jump = (int)(uint)ins.Operand1.Value;
 				uint pc = GetGeneralPurposeRegister(Register.R15);
 				uint sp = GetGeneralPurposeRegister(Register.R14);
 				SetGeneralPurposeRegister(Register.R15, (uint)(pc + jump));

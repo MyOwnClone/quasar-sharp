@@ -12,7 +12,7 @@ namespace GruntXProductions.Quasar.VM
 			{
 				uint condition = (uint)ins.Operand1.Value;
 				uint flags = GetGeneralPurposeRegister(Register.R12);
-				int jump = ((int)(uint)ins.Operand2.Value) - ins.Size;
+				int jump = ((int)(uint)ins.Operand2.Value);
 				int pc = (int)GetGeneralPurposeRegister(Register.R15);
 				pc += jump;
 				bool canJump = false;
