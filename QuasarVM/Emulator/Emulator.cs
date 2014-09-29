@@ -14,16 +14,17 @@ namespace GruntXProductions.Quasar.VM
 		
 		private uint ivtRegister;
 		private uint pageDirectory;
-		private uint userRegisterFileBase;
-		private uint supervisorRegisterFileBase;
 		private uint controlRegister;
 		private InterruptController interruptController;
 		
 		private bool cpuException = false;
 		private bool doubleFault = false;
 		
-		private long instructionsPerSecond = 100000;
+		private long instructionsPerSecond = 10000;
 		private long instructionCount = 0;
+		
+		private uint[] userRegisters = new uint[16];
+		private uint[] supervisorRegisters = new uint[16];
 		
 		private static Opcode[] PrivillagedInstructions = new Opcode[]{Opcode.SURF, Opcode.SSRF, Opcode.SIVT,
 			Opcode.SPDR, Opcode.SCTL, Opcode.LURF, Opcode.LSRF, Opcode.LIVT, Opcode.LCTL, Opcode.LPDR, Opcode.OUT,
@@ -43,22 +44,6 @@ namespace GruntXProductions.Quasar.VM
 			get
 			{
 				return this.pageDirectory;
-			}
-		}
-		
-		public uint UserRegisterFile
-		{
-			get
-			{
-				return this.userRegisterFileBase;
-			}
-		}
-		
-		public uint SupervisorRegisterFile
-		{
-			get
-			{
-				return this.supervisorRegisterFileBase;
 			}
 		}
 		
@@ -109,15 +94,19 @@ namespace GruntXProductions.Quasar.VM
 		
 		public uint GetGeneralPurposeRegister(Register reg)
 		{
-			uint regBase = IsSupervisor() ? supervisorRegisterFileBase : userRegisterFileBase;
-			return memory.ReadInt32(regBase + ((uint)reg * 4u), true);
+			if(IsSupervisor())
+				return supervisorRegisters[(int)reg];
+			else
+				return userRegisters[(int)reg];
 		}
 		
 		public uint SetGeneralPurposeRegister(Register reg, uint val)
 		{
-			uint regBase = IsSupervisor() ? supervisorRegisterFileBase : userRegisterFileBase;
-			uint prev = memory.ReadInt32(regBase + ((uint)reg * 4u));
-			memory.WriteInt32(regBase + ((uint)reg * 4u), val, true);
+			uint prev = GetGeneralPurposeRegister(reg);
+			if(IsSupervisor())
+				supervisorRegisters[(int)reg] = val;
+			else
+				userRegisters[(int)reg] = val;
 			return prev;
 		}
 		
@@ -134,7 +123,7 @@ namespace GruntXProductions.Quasar.VM
 		public void Emulate()
 		{
 			this.Reset();
-			
+			this.SetGeneralPurposeRegister(Register.R15, 0xFFD00000);
 			int second = System.DateTime.Now.Second;
 			while(true)
 			{
@@ -170,8 +159,12 @@ namespace GruntXProductions.Quasar.VM
 				updateDevices();
 				if(instructionCount > instructionsPerSecond)
 				{
-					while(second == System.DateTime.Now.Second)
-						Thread.Yield();
+					if(second == System.DateTime.Now.Second)
+					{
+						Console.WriteLine("Sleeping");
+						int sleep = System.DateTime.Now.Millisecond % 1000;
+						Thread.Sleep(sleep);
+					}
 					second = System.DateTime.Now.Second;
 					instructionCount = 0;
 				}
@@ -192,9 +185,11 @@ namespace GruntXProductions.Quasar.VM
 		
 		public void Trap(byte exception, uint errorcode)
 		{
-			Console.WriteLine("Trap {0}", exception);
-			if(this.cpuException)
-				Trap(0x06, exception);
+			Console.WriteLine("Trap {0} ({1})", exception, errorcode.ToString("x8"));
+			Console.WriteLine("Trap {0} ", GetGeneralPurposeRegister(Register.R15));
+			Console.ReadLine();
+			if(!doubleFault && this.cpuException)
+				this.Interrupt(0x06);
 			else if(doubleFault)
 				this.Reset();
 			else
@@ -215,7 +210,6 @@ namespace GruntXProductions.Quasar.VM
 		
 		public void Reset()
 		{
-			this.supervisorRegisterFileBase = 0x1000;
 			this.controlRegister = 0;
 			this.doubleFault = false;
 			this.cpuException = false;
@@ -223,6 +217,7 @@ namespace GruntXProductions.Quasar.VM
 			this.stack = new Stack(this);
 			this.interruptController = new InterruptController();
 			this.RegisterDevice(this.interruptController);
+			this.RegisterDevice(this.peripheralController);
 			foreach(Device dev in this.devices)
 				dev.Init(this);
 		}
@@ -263,12 +258,6 @@ namespace GruntXProductions.Quasar.VM
 			case Opcode.SPDR:
 				interpretSpdr(ins);
 				return true;
-			case Opcode.SURF:
-				interpretSurf(ins);
-				return true;
-			case Opcode.SSRF:
-				interpretSctl(ins);
-				return true;
 			case Opcode.LCTL:
 				interpretLctl(ins);
 				return true;
@@ -277,12 +266,6 @@ namespace GruntXProductions.Quasar.VM
 				return true;
 			case Opcode.LPDR:
 				interpretLpdr(ins);
-				return true;
-			case Opcode.LURF:
-				interpretLurf(ins);
-				return true;
-			case Opcode.LSRF:
-				interpretLctl(ins);
 				return true;
 			case Opcode.CMP:
 				interpretCmp(ins);

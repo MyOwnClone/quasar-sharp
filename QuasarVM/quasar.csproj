@@ -49,14 +49,10 @@
     <Compile Include="Emulator\Operand.cs" />
     <Compile Include="Emulator\Instructions\InstructionMov.cs" />
     <Compile Include="Emulator\Instructions\InstructionSwp.cs" />
-    <Compile Include="Emulator\Instructions\InstructionSurf.cs" />
-    <Compile Include="Emulator\Instructions\InstructionSsrf.cs" />
     <Compile Include="Emulator\Instructions\InstructionSpdr.cs" />
     <Compile Include="Emulator\Instructions\InstructionSivt.cs" />
     <Compile Include="Emulator\Instructions\InstructionSctl.cs" />
     <Compile Include="Emulator\Instructions\InstructionLctl.cs" />
-    <Compile Include="Emulator\Instructions\InstructionLurf.cs" />
-    <Compile Include="Emulator\Instructions\InstructionLsrf.cs" />
     <Compile Include="Emulator\Instructions\InstructionLivt.cs" />
     <Compile Include="Emulator\Instructions\InstructionLpdr.cs" />
     <Compile Include="Emulator\Flags.cs" />
@@ -83,7 +79,6 @@
     <Compile Include="Hardware\PeripheralController.cs" />
     <Compile Include="Emulator\Instructions\InstructionBsr.cs" />
     <Compile Include="Emulator\Instructions\InstructionRtn.cs" />
-    <Compile Include="Hardware\Devices\DeviceSerial.cs" />
     <Compile Include="Memory\MappedRegion.cs" />
     <Compile Include="Hardware\Devices\DeviceTextScreen.cs" />
     <Compile Include="Hardware\Devices\IDisplay.cs" />
@@ -99,6 +94,8 @@
     <Compile Include="Memory\Page.cs" />
     <Compile Include="Debugger\DebugServer.cs" />
     <Compile Include="Debugger\DebugConnection.cs" />
+    <Compile Include="Hardware\Devices\DeviceROMController.cs" />
+    <Compile Include="Hardware\Devices\DeviceSerialController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -113,5 +110,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ROM\font.bin" />
+    <EmbeddedResource Include="..\Firmware\Boot\boot.bin">
+      <Link>ROM\boot.bin</Link>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

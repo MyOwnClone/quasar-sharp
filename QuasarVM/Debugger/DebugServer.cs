@@ -8,7 +8,7 @@ using System.Text;
 
 namespace GruntXProductions.Quasar.VM
 {
-	public class DebugServer
+	public class DebugServer : Device
 	{
 		private TcpListener tcpListener;
 		private Emulator host;
@@ -41,7 +41,15 @@ namespace GruntXProductions.Quasar.VM
 			}
 		}
 		
+		public override void Init (Emulator emu)
+		{
+		}
 		
+		public override void Update (Emulator emu)
+		{
+			foreach(DebugConnection conn in this.connections)
+				conn.Update(emu);
+		}
 	}
 }
 

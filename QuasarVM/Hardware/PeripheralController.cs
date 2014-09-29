@@ -52,7 +52,7 @@ namespace GruntXProductions.Quasar.VM
 		
 		public override void Init (Emulator emu)
 		{
-			emu.Memory.MapRegion(new DeviceMappedRegion(0xFF100000, 0xFFFFFFFF, writeCallback, readCallback));
+			emu.Memory.MapRegion(new DeviceMappedRegion(0xFFE00000, 0xFFFFFFFF, writeCallback, readCallback));
 		}
 		
 		private void writeCallback(uint address, byte data)

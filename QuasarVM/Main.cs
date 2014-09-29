@@ -10,7 +10,7 @@ namespace GruntXProductions.Quasar.VM
 		public static void Main (string[] args)
 		{
 			string input = null;
-			uint ramsize = 0xFFFFFFFF;
+			uint ramsize = 0xFFFFFF;
 			QuasarRam memory = new QuasarRam(ramsize);
 			Emulator emu = new Emulator(memory);
 			
@@ -28,8 +28,11 @@ namespace GruntXProductions.Quasar.VM
 			
 			byte[] program = File.ReadAllBytes(input);
 			memory.Write(0, program.Length, 0, program);
-
-			emu.RegisterDevice(new DeviceSerial(0, Console.OpenStandardOutput()));
+			DeviceSerialController serialController = new DeviceSerialController();
+			serialController.OpenComPort(0, Console.OpenStandardInput());
+			serialController.OpenComPort(1, Console.OpenStandardOutput());
+			emu.RegisterDevice(serialController);
+			emu.RegisterDevice(new DeviceROMController(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("GruntXProductions.Quasar.VM.ROM.boot.bin")));
 			
 			ScreenForm form = new ScreenForm();
 	

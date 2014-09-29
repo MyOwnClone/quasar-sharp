@@ -30,10 +30,10 @@ namespace GruntXProductions.Quasar.VM
 		{
 			get
 			{
-				if(index > limit)
-					throw new SegmentationFaultException(index);
-				else if (isMapped(index))
+				if (isMapped(index))
 					return getDeviceMap(index).Read(index);
+				else if(index > limit)
+					throw new SegmentationFaultException(index);
 				uint aligned = (uint)(index & 0xFFFFF000);
 				if(memoryBlocks.ContainsKey(aligned))
 					return memoryBlocks[aligned][index];
@@ -42,10 +42,10 @@ namespace GruntXProductions.Quasar.VM
 			}
 			set	
 			{
-				if(index > limit)
-					throw new SegmentationFaultException(index);
-				else if (isMapped(index))
+				if (isMapped(index))
 					getDeviceMap(index).Write(index, value);
+				else if(index > limit)
+					throw new SegmentationFaultException(index);
 				else
 				{
 					uint aligned = (uint)(index & 0xFFFFF000);
@@ -124,7 +124,7 @@ namespace GruntXProductions.Quasar.VM
 				if((page & Page.PRESENT) == 0)
 					throw new PageFaultException(address);
 				uint phys = (lookasideBuffer[vaddr_pa] & 0xFFFF000) | (address & 0xFFF);
-				uint attr = lookasideBuffer[vaddr_pa] & 0xFFF;
+				
 				this[phys] = b;
 			}
 		}
