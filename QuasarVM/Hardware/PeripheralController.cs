@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GruntXProductions.Quasar.VM
 {
-	public class PeripheralController
+	public class PeripheralController : Device
 	{
 		private Dictionary<int, Device> ioPorts = new Dictionary<int, Device>();
 		private Emulator host;
@@ -48,6 +48,21 @@ namespace GruntXProductions.Quasar.VM
 			if(ioPorts.ContainsKey(port))
 				return ioPorts[port].RequestData(port);
 			return 0;
+		}
+		
+		public override void Init (Emulator emu)
+		{
+			emu.Memory.MapRegion(new DeviceMappedRegion(0xFF100000, 0xFFFFFFFF, writeCallback, readCallback));
+		}
+		
+		private void writeCallback(uint address, byte data)
+		{
+			Out ((int)(address & 0xFFFFF), data);
+		}
+		
+		private void readCallback(uint address, ref byte data)
+		{
+			data = (byte)In((int)(address & 0xFFFFF));
 		}
 		
 		

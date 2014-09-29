@@ -344,12 +344,6 @@ namespace GruntXProductions.Quasar.VM
 			case Opcode.SAR:
 				interpretSar(ins);
 				return true;
-			case Opcode.OUT:
-				interpretOut(ins);
-				return true;
-			case Opcode.IN:
-				interpretIn (ins);
-				return true;
 			case Opcode.SC:
 				interpretSc (ins);
 				return true;

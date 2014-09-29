@@ -81,8 +81,6 @@
     <Compile Include="Emulator\Instructions\InstructionSub.cs" />
     <Compile Include="Hardware\Device.cs" />
     <Compile Include="Hardware\PeripheralController.cs" />
-    <Compile Include="Emulator\Instructions\InterpretOut.cs" />
-    <Compile Include="Emulator\Instructions\InterpretIn.cs" />
     <Compile Include="Emulator\Instructions\InstructionBsr.cs" />
     <Compile Include="Emulator\Instructions\InstructionRtn.cs" />
     <Compile Include="Hardware\Devices\DeviceSerial.cs" />
