@@ -9,7 +9,8 @@ namespace GruntXProductions.Quasar.VM
 		private Operand operand2;
 		private int size;
 		private bool hasOperands = false;
-		
+        private uint offset;
+
 		public Opcode OperationCode
 		{
 			get
@@ -41,15 +42,23 @@ namespace GruntXProductions.Quasar.VM
 				return this.size;
 			}
 		}
-		
-		public bool HasOperands
-		{
-			get
-			{
-				return hasOperands;
-			}
-		}
-		
+
+        public bool HasOperands
+        {
+            get
+            {
+                return hasOperands;
+            }
+        }
+
+        public uint Offset
+        {
+            get
+            {
+                return this.offset;
+            }
+        }
+
 		public Instruction(Opcode opcode)
 		{
 			this.opcode = opcode;
@@ -109,16 +118,15 @@ namespace GruntXProductions.Quasar.VM
 			{
 			case AddressingMode.DIRECT_REGISTER:
 				address++;
-				return (Register)memory[address - 1];
+                return (Register)memory[address - 1];
+            case AddressingMode.INDIRECT_REG8:
+            case AddressingMode.INDIRECT_REG16:
 			case AddressingMode.INDIRECT_REG32:
-				address++;
-				return (Register)memory[address - 1];
-			case AddressingMode.INDIRECT_REG16:
-				address++;
-				return (Register)memory[address - 1];
-			case AddressingMode.INDIRECT_REG8:
-				address++;
-				return (Register)memory[address - 1];
+                Register reg = (Register)memory[address];
+                byte[] bytes = new byte[2];
+                memory.Read(address + 1, 2, 0, bytes);
+                address += 3;
+                return new IndirectOffset(reg, BitConverter.ToInt16(bytes, 0));
 			case AddressingMode.IMMEDIATE_32:
 				address += 4;
 				return memory.ReadInt32(address - 4);

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -36,6 +36,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Emulator\IndirectOffset.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Memory\MemoryBlock.cs" />
@@ -83,7 +84,9 @@
     <Compile Include="Hardware\Devices\DeviceTextScreen.cs" />
     <Compile Include="Hardware\Devices\IDisplay.cs" />
     <Compile Include="Hardware\Devices\Resolution.cs" />
-    <Compile Include="GUI\ScreenForm.cs" />
+    <Compile Include="GUI\ScreenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Hardware\InterruptController.cs" />
     <Compile Include="Memory\Stack.cs" />
     <Compile Include="Emulator\Instructions\InstructionIrtn.cs" />
@@ -98,16 +101,7 @@
     <Compile Include="Hardware\Devices\DeviceSerialController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Emulator\" />
-    <Folder Include="Hardware\" />
-    <Folder Include="Memory\" />
-    <Folder Include="Emulator\Instructions\" />
-    <Folder Include="Hardware\Devices\" />
-    <Folder Include="GUI\" />
-    <Folder Include="ROM\" />
-    <Folder Include="Debugger\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="ROM\font.bin" />
     <EmbeddedResource Include="..\Firmware\Boot\boot.bin">

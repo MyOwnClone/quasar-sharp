@@ -138,10 +138,12 @@ namespace GruntXProductions.Quasar.VM
 		
 		public override void Update (Emulator emu)
 		{
+            /*
 			if(this.enableCursor && System.DateTime.Now.Second % 2 == 0)
 				this.drawCursor(cursorPosition);
 			else
 				this.clearCursor(cursorPosition);
+             */
 		}
 	}
 }

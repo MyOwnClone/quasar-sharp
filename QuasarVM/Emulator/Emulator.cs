@@ -20,8 +20,7 @@ namespace GruntXProductions.Quasar.VM
 		private bool cpuException = false;
 		private bool doubleFault = false;
 		
-		private long instructionsPerSecond = 10000;
-		private long instructionCount = 0;
+		private long instructionsPerSecond = 1000000;
 		
 		private uint[] userRegisters = new uint[16];
 		private uint[] supervisorRegisters = new uint[16];
@@ -29,8 +28,9 @@ namespace GruntXProductions.Quasar.VM
 		private static Opcode[] PrivillagedInstructions = new Opcode[]{Opcode.SURF, Opcode.SSRF, Opcode.SIVT,
 			Opcode.SPDR, Opcode.SCTL, Opcode.LURF, Opcode.LSRF, Opcode.LIVT, Opcode.LCTL, Opcode.LPDR, Opcode.OUT,
 			Opcode.OUT, Opcode.IN, Opcode.IRTN, Opcode.WAIT};
-		
-		
+
+        private System.Timers.Timer clock;
+
 		public uint InterruptVectorTable
 		{
 			get
@@ -123,56 +123,55 @@ namespace GruntXProductions.Quasar.VM
 		public void Emulate()
 		{
 			this.Reset();
-			this.SetGeneralPurposeRegister(Register.R15, 0xFFD00000);
-			int second = System.DateTime.Now.Second;
+            this.SetGeneralPurposeRegister(Register.R15, 0xFFD00000);
+            this.SetGeneralPurposeRegister(Register.R15, 0x00000000);
+			int msecond = System.DateTime.Now.Millisecond;
+            clock = new System.Timers.Timer(100);
+            clock.Elapsed += new System.Timers.ElapsedEventHandler(cpuTick);
+
+            this.clock.AutoReset = true;
+            clock.Start();
 			while(true)
-			{
-				uint pc = GetGeneralPurposeRegister(Register.R15);
-				Instruction ins = Instruction.Fetch(this.memory, pc);
-				pc += (uint)ins.Size;
-				SetGeneralPurposeRegister(Register.R15, pc);
-				try
-				{
-					if(!decodeInstruction(ins))
-						Trap(0x02);
-				}
-				catch(DivideByZeroException)
-				{
-					Trap(0x01);
-				}
-				catch(InvalidOpcodeException)
-				{
-					Trap(0x02);
-				}
-				catch(SegmentationFaultException ex)
-				{
-					Trap(0x03, ex.FaultingAddress);
-				}
-				catch(PageFaultException ex)
-				{
-					Trap(0x04, ex.FaultingAddress);
-				}
-				catch(GeneralProtectionException ex)
-				{
-					Trap(0x05, (uint)ex.Opcode);
-				}
-				updateDevices();
-				if(instructionCount > instructionsPerSecond)
-				{
-					if(second == System.DateTime.Now.Second)
-					{
-						Console.WriteLine("Sleeping");
-						int sleep = System.DateTime.Now.Millisecond % 1000;
-						Thread.Sleep(sleep);
-					}
-					second = System.DateTime.Now.Second;
-					instructionCount = 0;
-				}
-				else
-					instructionCount++;
-			}
+                System.Threading.Thread.Sleep(0x1000);
 		}
-		
+
+        private void cpuTick(object o, System.Timers.ElapsedEventArgs args)
+        {
+            this.clock.Enabled = false;
+            try
+            {
+                for (int i = 0; i < this.instructionsPerSecond / 100; i++)
+                {
+                    uint pc = GetGeneralPurposeRegister(Register.R15);
+                    Instruction ins = Instruction.Fetch(this.memory, pc);
+                    pc += (uint)ins.Size;
+                    SetGeneralPurposeRegister(Register.R15, pc);
+                    updateDevices();
+                }
+            }
+            catch (DivideByZeroException)
+            {
+                Trap(0x01);
+            }
+            catch (InvalidOpcodeException)
+            {
+                Trap(0x02);
+            }
+            catch (SegmentationFaultException ex)
+            {
+                Trap(0x03, ex.FaultingAddress);
+            }
+            catch (PageFaultException ex)
+            {
+                Trap(0x04, ex.FaultingAddress);
+            }
+            catch (GeneralProtectionException ex)
+            {
+                Trap(0x05, (uint)ex.Opcode);
+            }
+            this.clock.Enabled = true;
+        }
+
 		public void Interrupt(byte intnum)
 		{
 			uint oldCtl = controlRegister;
@@ -184,10 +183,8 @@ namespace GruntXProductions.Quasar.VM
 		}
 		
 		public void Trap(byte exception, uint errorcode)
-		{
-			Console.WriteLine("Trap {0} ({1})", exception, errorcode.ToString("x8"));
-			Console.WriteLine("Trap {0} ", GetGeneralPurposeRegister(Register.R15));
-			Console.ReadLine();
+        {
+            Console.Error.WriteLine("CPU triggered exception {0} with errorcode {1}!!!", exception.ToString("x2"), errorcode.ToString("x8"));
 			if(!doubleFault && this.cpuException)
 				this.Interrupt(0x06);
 			else if(doubleFault)
@@ -224,7 +221,7 @@ namespace GruntXProductions.Quasar.VM
 		
 		private void updateDevices()
 		{
-			for(int i = 0; i < devices.Count; i++)
+            for (int i = 0; i < devices.Count; i++)
 				devices[i].Update(this);
 		}
 		
