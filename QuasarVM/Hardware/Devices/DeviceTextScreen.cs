@@ -28,7 +28,7 @@ namespace GruntXProductions.Quasar.VM
 		{
 			emu.PeripheralController.RequestIOPort(this, 0x101);
 			emu.PeripheralController.RequestIOPort(this, 0x102);
-			emu.Memory.MapRegion(new DeviceMappedRegion(0xB8000, 0xB8FA0, writeCallback, readCallback));
+            emu.Memory.MapRegion(new DeviceMappedRegion(0xFFA00000, 0xFFD0FFFF, writeCallback, readCallback));
 		}
 		
 		
@@ -54,7 +54,7 @@ namespace GruntXProductions.Quasar.VM
 		
 		private void writeCallback(uint address, byte data)
 		{
-			int pos = (int)address - (int)0xB8000;
+            int pos = (int)(address - 0xFFA00000);
 			int pos2 = pos / 2;
 			videoMemory[pos] = data;
 			

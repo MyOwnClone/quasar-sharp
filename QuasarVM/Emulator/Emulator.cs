@@ -123,8 +123,7 @@ namespace GruntXProductions.Quasar.VM
 		public void Emulate()
 		{
 			this.Reset();
-            this.SetGeneralPurposeRegister(Register.R15, 0xFFD00000);
-            this.SetGeneralPurposeRegister(Register.R15, 0x00000000);
+            this.SetGeneralPurposeRegister(Register.R15, 0xFFD10000);
 			int msecond = System.DateTime.Now.Millisecond;
             clock = new System.Timers.Timer(100);
             clock.Elapsed += new System.Timers.ElapsedEventHandler(cpuTick);
@@ -146,6 +145,7 @@ namespace GruntXProductions.Quasar.VM
                     Instruction ins = Instruction.Fetch(this.memory, pc);
                     pc += (uint)ins.Size;
                     SetGeneralPurposeRegister(Register.R15, pc);
+                    decodeInstruction(ins);
                     updateDevices();
                 }
             }
