@@ -116,8 +116,6 @@
     <Compile Include="Debugger\DebugConnection.cs" />
     <Compile Include="Hardware\Devices\DeviceROMController.cs" />
     <Compile Include="Hardware\Devices\DeviceSerialController.cs" />
-    <Compile Include="Server\QuasarConnection.cs" />
-    <Compile Include="Server\QuasarServer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -7,3 +7,11 @@ C:\Users\Grunt\Desktop\Quasar\bin\quasar.exe
 C:\Users\Grunt\Desktop\Quasar\bin\quasar.pdb
 C:\Users\Grunt\Desktop\Quasar\src\QuasarVM\obj\x86\Debug\quasar.exe
 C:\Users\Grunt\Desktop\Quasar\src\QuasarVM\obj\x86\Debug\quasar.pdb
+K:\Quasar\src\QuasarVM\obj\x86\Debug\QuasarVM.csprojResolveAssemblyReference.cache
+K:\Quasar\src\QuasarVM\obj\x86\Debug\GruntXProductions.Quasar.VM.GUI.QuasarUI.resources
+K:\Quasar\src\QuasarVM\obj\x86\Debug\GruntXProductions.Quasar.VM.ScreenForm.resources
+K:\Quasar\src\QuasarVM\obj\x86\Debug\QuasarVM.csproj.GenerateResource.Cache
+K:\Quasar\src\QuasarVM\obj\x86\Debug\quasar.exe
+K:\Quasar\src\QuasarVM\obj\x86\Debug\quasar.pdb
+K:\Quasar\bin\quasar.exe
+K:\Quasar\bin\quasar.pdb
