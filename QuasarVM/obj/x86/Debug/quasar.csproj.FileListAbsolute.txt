@@ -1,4 +1,0 @@
-C:\Users\Grunt\Quasar\QuasarVM\bin\Debug\QuasarVM.exe
-C:\Users\Grunt\Quasar\QuasarVM\bin\Debug\QuasarVM.pdb
-C:\Users\Grunt\Quasar\QuasarVM\obj\x86\Debug\QuasarVM.exe
-C:\Users\Grunt\Quasar\QuasarVM\obj\x86\Debug\QuasarVM.pdb

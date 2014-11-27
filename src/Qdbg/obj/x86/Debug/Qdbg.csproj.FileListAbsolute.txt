@@ -1,0 +1,10 @@
+c:\users\grunt\documents\visual studio 2010\Projects\Qdbg\Qdbg\bin\Debug\qdbg.exe
+c:\users\grunt\documents\visual studio 2010\Projects\Qdbg\Qdbg\bin\Debug\qdbg.pdb
+c:\users\grunt\documents\visual studio 2010\Projects\Qdbg\Qdbg\obj\x86\Debug\qdbg.exe
+c:\users\grunt\documents\visual studio 2010\Projects\Qdbg\Qdbg\obj\x86\Debug\qdbg.pdb
+C:\Users\Grunt\Desktop\Quasar\src\bin\qdbg.exe
+C:\Users\Grunt\Desktop\Quasar\src\bin\qdbg.pdb
+C:\Users\Grunt\Desktop\Quasar\src\Qdbg\obj\x86\Debug\qdbg.exe
+C:\Users\Grunt\Desktop\Quasar\src\Qdbg\obj\x86\Debug\qdbg.pdb
+C:\Users\Grunt\Desktop\Quasar\bin\qdbg.exe
+C:\Users\Grunt\Desktop\Quasar\bin\qdbg.pdb

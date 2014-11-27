@@ -1,0 +1,9 @@
+C:\Users\Grunt\Quasar\QuasarVM\bin\Debug\QuasarVM.exe
+C:\Users\Grunt\Quasar\QuasarVM\bin\Debug\QuasarVM.pdb
+C:\Users\Grunt\Quasar\QuasarVM\obj\x86\Debug\QuasarVM.exe
+C:\Users\Grunt\Quasar\QuasarVM\obj\x86\Debug\QuasarVM.pdb
+C:\Users\Grunt\Quasar\QuasarVM\bin\Debug\GruntXProductions.CoreLib.dll
+C:\Users\Grunt\Quasar\QuasarVM\bin\Debug\GruntXProductions.CoreLib.pdb
+C:\Users\Grunt\Quasar\QuasarVM\obj\x86\Debug\GruntXProductions.Quasar.VM.GUI.QuasarUI.resources
+C:\Users\Grunt\Quasar\QuasarVM\obj\x86\Debug\GruntXProductions.Quasar.VM.ScreenForm.resources
+C:\Users\Grunt\Quasar\QuasarVM\obj\x86\Debug\quasar.csproj.GenerateResource.Cache

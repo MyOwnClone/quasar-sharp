@@ -1,0 +1,45 @@
+
+
+main:
+	mov	%r14,	0xA000
+	mov	%r0,	0xF000
+	livt	%r0
+	mov	%r1,	test
+	mov	@r0,	%r1	
+	mov	%r0,	0xF014
+	mov	%r1,	gpf_handler
+	mov	@r0,	%r1
+	mov	%r0,	0x1000
+	lurf	%r0
+	sctl	%r0	
+	bor	%r0,	1
+	lctl	%r0	
+	sctl	%r5
+	sc
+	
+.loop:
+	br	.loop
+	rtn
+
+
+test:
+	mov	%r0,	msg
+	bsr	puts
+	
+	irtn
+
+
+gpf_handler:
+	mov	%r0,	error_gp
+	bsr	puts
+.loop:
+	br	.loop
+	irtn
+
+msg:
+	string	"Yay usermode works! Now just need paging"
+error_gp:
+	string	"General protection fault!"
+
+#include "console.inc"
+

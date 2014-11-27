@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BBD21C19-EBDE-4D2C-A6E7-C95F5AB032CD}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GruntXProductions.Quasar.Assembler</RootNamespace>
+    <AssemblyName>qasm</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assemblers\AddAssembler.cs" />
+    <Compile Include="Assemblers\AndAssembler.cs" />
+    <Compile Include="Assemblers\BorAssembler.cs" />
+    <Compile Include="Assemblers\BytesAssembler.cs" />
+    <Compile Include="Assemblers\CmpAssembler.cs" />
+    <Compile Include="Assemblers\DataAssembler.cs" />
+    <Compile Include="Assemblers\DivAssembler.cs" />
+    <Compile Include="Assemblers\DwordsAssembler.cs" />
+    <Compile Include="Assemblers\InAssembler.cs" />
+    <Compile Include="Assemblers\JmpAssembler.cs" />
+    <Compile Include="Assemblers\LctlAssembler.cs" />
+    <Compile Include="Assemblers\LfpAssembler.cs" />
+    <Compile Include="Assemblers\LivtAssembler.cs" />
+    <Compile Include="Assemblers\LpdrAssembler.cs" />
+    <Compile Include="Assemblers\LsrfAssembler.cs" />
+    <Compile Include="Assemblers\LurfAssembler.cs" />
+    <Compile Include="Assemblers\ModAssembler.cs" />
+    <Compile Include="Assemblers\MovAssembler.cs" />
+    <Compile Include="Assemblers\MulAssembler.cs" />
+    <Compile Include="Assemblers\NegAssembler.cs" />
+    <Compile Include="Assemblers\NotAssembler.cs" />
+    <Compile Include="Assemblers\OutAssembler.cs" />
+    <Compile Include="Assemblers\ReserveAssembler.cs" />
+    <Compile Include="Assemblers\RtnAssembler.cs" />
+    <Compile Include="Assemblers\ScAssembler.cs" />
+    <Compile Include="Assemblers\ShlAssembler.cs" />
+    <Compile Include="Assemblers\ShrAssembler.cs" />
+    <Compile Include="Assemblers\SivtAssembler.cs" />
+    <Compile Include="Assemblers\SsrfAssembler.cs" />
+    <Compile Include="Assemblers\StringAssembler.cs" />
+    <Compile Include="Assemblers\SubAssembler.cs" />
+    <Compile Include="Assemblers\SurfAssembler.cs" />
+    <Compile Include="Assemblers\TstAssembler.cs" />
+    <Compile Include="Assemblers\WaitAssembler.cs" />
+    <Compile Include="Assemblers\WordsAssembler.cs" />
+    <Compile Include="Assemblers\XorAssembler.cs" />
+    <Compile Include="BinaryFile.cs" />
+    <Compile Include="Parser\AbstractAssembler.cs" />
+    <Compile Include="Parser\CodeGenerator.cs" />
+    <Compile Include="Parser\Instruction.cs" />
+    <Compile Include="Parser\Label.cs" />
+    <Compile Include="Parser\Parser.cs" />
+    <Compile Include="Scanner\Tokens\TokenColon.cs" />
+    <Compile Include="Scanner\Tokens\TokenFloatingPoint.cs" />
+    <Compile Include="Scanner\Tokens\TokenIndirectRegister.cs" />
+    <Compile Include="Scanner\Tokens\AbstractToken.cs" />
+    <Compile Include="Scanner\Lexer.cs" />
+    <Compile Include="Scanner\ScanIdentifier.cs" />
+    <Compile Include="Scanner\ScanIntLiteral.cs" />
+    <Compile Include="Scanner\ScanningException.cs" />
+    <Compile Include="Scanner\ScanRegister.cs" />
+    <Compile Include="Scanner\ScanStringLiteral.cs" />
+    <Compile Include="Scanner\Tokens\TokenComma.cs" />
+    <Compile Include="Scanner\Tokens\TokenEOL.cs" />
+    <Compile Include="Scanner\Tokens\TokenIdentifier.cs" />
+    <Compile Include="Scanner\Tokens\TokenIntLiteral.cs" />
+    <Compile Include="Scanner\Tokens\TokenRegister.cs" />
+    <Compile Include="Scanner\Tokens\TokenStringLiteral.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Assemblers\SctlAssembler.cs" />
+    <Compile Include="Assemblers\SpdrAssembler.cs" />
+    <Compile Include="Assemblers\SwpAssembler.cs" />
+    <Compile Include="Assemblers\BsrAssembler.cs" />
+    <Compile Include="Scanner\Tokens\TokenHash.cs" />
+    <Compile Include="Parser\PreprocessorDirective.cs" />
+    <Compile Include="Assemblers\OrgAssembler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibQuasar\LibQuasar.csproj">
+      <Project>{2B9042EB-543D-4661-AFF9-9EBFC9CBAF6E}</Project>
+      <Name>LibQuasar</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

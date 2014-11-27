@@ -1,0 +1,14 @@
+c:\users\grunt\documents\visual studio 2010\Projects\Qasm\Qasm\bin\Debug\Qasm.exe
+c:\users\grunt\documents\visual studio 2010\Projects\Qasm\Qasm\bin\Debug\Qasm.pdb
+c:\users\grunt\documents\visual studio 2010\Projects\Qasm\Qasm\bin\Debug\LibQuasar.dll
+c:\users\grunt\documents\visual studio 2010\Projects\Qasm\Qasm\bin\Debug\LibQuasar.pdb
+c:\users\grunt\documents\visual studio 2010\Projects\Qasm\Qasm\obj\x86\Debug\Qasm.csprojResolveAssemblyReference.cache
+c:\users\grunt\documents\visual studio 2010\Projects\Qasm\Qasm\obj\x86\Debug\Qasm.exe
+c:\users\grunt\documents\visual studio 2010\Projects\Qasm\Qasm\obj\x86\Debug\Qasm.pdb
+C:\Users\Grunt\Desktop\Quasar\src\bin\Qasm.exe
+C:\Users\Grunt\Desktop\Quasar\src\bin\Qasm.pdb
+C:\Users\Grunt\Desktop\Quasar\src\Qasm\obj\x86\Debug\Qasm.csprojResolveAssemblyReference.cache
+C:\Users\Grunt\Desktop\Quasar\src\Qasm\obj\x86\Debug\Qasm.exe
+C:\Users\Grunt\Desktop\Quasar\src\Qasm\obj\x86\Debug\Qasm.pdb
+C:\Users\Grunt\Desktop\Quasar\bin\Qasm.exe
+C:\Users\Grunt\Desktop\Quasar\bin\Qasm.pdb

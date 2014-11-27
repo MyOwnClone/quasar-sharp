@@ -1,0 +1,11 @@
+c:\users\grunt\documents\visual studio 2010\Projects\Qasm\LibQuasar\bin\Debug\LibQuasar.dll
+c:\users\grunt\documents\visual studio 2010\Projects\Qasm\LibQuasar\bin\Debug\LibQuasar.pdb
+c:\users\grunt\documents\visual studio 2010\Projects\Qasm\LibQuasar\obj\Debug\LibQuasar.dll
+c:\users\grunt\documents\visual studio 2010\Projects\Qasm\LibQuasar\obj\Debug\LibQuasar.pdb
+C:\Users\Grunt\documents\visual studio 2010\Projects\Qasm\LibQuasar\obj\Debug\LibQuasar.csprojResolveAssemblyReference.cache
+C:\Users\Grunt\Desktop\Quasar\bin\LibQuasar.dll
+C:\Users\Grunt\Desktop\Quasar\bin\LibQuasar.pdb
+C:\Users\Grunt\Desktop\Quasar\src\LibQuasar\obj\Debug\LibQuasar.dll
+C:\Users\Grunt\Desktop\Quasar\src\LibQuasar\obj\Debug\LibQuasar.pdb
+C:\Users\Grunt\Desktop\Quasar\src\bin\LibQuasar.dll
+C:\Users\Grunt\Desktop\Quasar\src\bin\LibQuasar.pdb
